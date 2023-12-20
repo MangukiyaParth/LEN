@@ -13,11 +13,16 @@ function get_songs()
 	$search = $gh->read("search","");
 	$orderdir = $gh->read("orderdir");
 	$ordercolumn = $gh->read('ordercolumn');
+	$get_liked = $gh->read('get_liked',0);
 
-	$whereData = "1=1";
+	$whereData = $basic_where = "1=1";
+	if($get_liked == 1)
+	{
+		$whereData = $basic_where = "id IN (SELECT song_id FROM tbl_like_song WHERE entry_by = '$login_user_id')";
+	}
 	if($search != "")
 	{
-		$whereData = "(s.bass_player LIKE '%" . $search . "%' OR 
+		$whereData.= " AND (s.bass_player LIKE '%" . $search . "%' OR 
 			s.title LIKE '%" . $search . "%' OR 
 			s.artist LIKE '%" . $search . "%' OR 
 			s.album LIKE '%" . $search . "%' OR 
@@ -29,7 +34,7 @@ function get_songs()
 			s.referance LIKE '%" . $search . "%')";
 		if($search_type != "")
 		{
-			$whereData = "(s.$search_type LIKE '%" . $search . "%')";
+			$whereData.= " AND (s.$search_type LIKE '%" . $search . "%')";
 		}
 
 		$history_id = $gh->generateuniqid();
@@ -66,7 +71,7 @@ function get_songs()
 		}
 	}
 
-	$total_count = $db->get_row_count('tbl_songs', "1=1");
+	$total_count = $db->get_row_count('tbl_songs', $basic_where);
 	$count_query = "SELECT count(DISTINCT s.id) as cnt FROM tbl_songs as s WHERE " . $whereData;
 	$filtered_count = $db->execute_scalar($count_query);
 
