@@ -85,6 +85,19 @@ function get_songs()
 	$rows = $db->execute($query);
 
 	if ($rows != null && is_array($rows) && count($rows) > 0) {
+		foreach ($rows as $key => $song) {
+			$song_id = $song['id'];
+			$query_comment = "SELECT comment.comment, comment.entry_by, comment.entry_at, user.name,
+				CASE WHEN (comment.entry_by = '$login_user_id') THEN 1 ELSE 0 END AS my_comment
+				FROM `tbl_comment_song` comment INNER JOIN tbl_users user ON user.id = comment.entry_by 
+				WHERE comment.song_id = '$song_id'";
+			$rows_comment = $db->execute($query_comment);
+			$rows[$key]['comments'] = $rows_comment;
+			
+			$query_tbl_review = "SELECT * FROM `tbl_review` r WHERE r.song_id = '$song_id' AND entry_by = '$login_user_id'";
+			$rows_tbl_review = $db->execute($query_tbl_review);
+			$rows[$key]['my_review'] = $rows_tbl_review;
+		}
 		$outputjson['recordsTotal'] = $total_count;
 		$outputjson['recordsFiltered'] = $filtered_count;
 		$outputjson['success'] = 1;

@@ -1,6 +1,6 @@
 <?php
 
-function add_song_like()
+function add_like()
 {
 	global $outputjson, $gh, $db, $login_user_id;
 	$outputjson['success'] = 0;

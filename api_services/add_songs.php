@@ -19,9 +19,9 @@ function add_songs()
 	// $drum_complexity = $gh->read("drum_complexity");
 	// $bass_tone = $gh->read("bass_tone");
 	// $drum_sound = $gh->read("drum_sound");
-	$is_slap = $gh->read("is_slap");
-	$bass_solo = $gh->read("bass_solo");
-	$drum_solo = $gh->read("drum_solo");
+	// $is_slap = $gh->read("is_slap");
+	// $bass_solo = $gh->read("bass_solo");
+	// $drum_solo = $gh->read("drum_solo");
 	$type = $gh->read("type");
 	$genre = $gh->read("genre");
 	$referance = $gh->read("referance");
@@ -100,9 +100,9 @@ function add_songs()
 			// "drum_complexity"=>$drum_complexity,
 			// "bass_tone"=>$bass_tone,
 			// "drum_sound"=>$drum_sound,
-			"is_slap"=>$is_slap,
-			"bass_solo"=>$bass_solo,
-			"drum_solo"=>$drum_solo,
+			// "is_slap"=>$is_slap,
+			// "bass_solo"=>$bass_solo,
+			// "drum_solo"=>$drum_solo,
 			"type"=>$type,
 			"type_id"=>$type_id,
 			"genre"=>$genre,
