@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE || !isset($_SESSION)) {
 error_reporting(0);
 error_reporting(E_ALL);
 
-date_default_timezone_set('UTC');
+date_default_timezone_set('Asia/Kolkata');
 define('LAST_UPDATE_DATE_FOR_FILE', '2023-01-25');
 define('ThrottleExceededErrorCode', '3001');
 
@@ -17,7 +17,7 @@ require_once(__DIR__ . "/../config/MANAGE_CONFIG.php");
 define("EXTEND_BUCKET", (IS_DEVELOPMENT) ? '0000_local/' : '');
 
 // for omr connection
-include_once(__DIR__ . "/../" . "admin_panel/_idiorm.php");
+include_once(__DIR__ ."/_idiorm.php");
 
 ORM::configure(array(
     'connection_string' => 'mysql:host=' . db_host . ';dbname=' . db_name . ';charset=utf8;',

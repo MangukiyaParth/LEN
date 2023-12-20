@@ -74,29 +74,29 @@ $last_query = "";
 $login_not_require_operation = array("register_user","login_user", "logout_user", "log_manage", "upload_csv");
 $loggedin_user = [];
 $md5_user_id = 0;
-if (!in_array($operation, $login_not_require_operation)) {
-	$auth_token = isset($auth_tkn) ? $auth_tkn : "";
-	// echo $auth_token;
-	if ($auth_token != "") {
-		$isvalidate = $gh->validatejwt($auth_token,$user_id,$from);
-		if($isvalidate['status'] == 1){
-			$loggedin_user = getUsersDetails($user_id, false);
-		}
-		else {
-			$outputjson['message'] = "Token not Found";
-			$outputjson['status'] = -2;
-			$response_string = json_encode(($outputjson), JSON_PRETTY_PRINT);
-			echo $response_string;
-			return;
-		}
-	} else {
-		$outputjson['message'] = "Token not Found.";
-		$outputjson['status'] = -2;
-		$response_string = json_encode(($outputjson), JSON_PRETTY_PRINT);
-		echo $response_string;
-		return;
-	}
-}
+// if (!in_array($operation, $login_not_require_operation)) {
+// 	$auth_token = isset($auth_tkn) ? $auth_tkn : "";
+// 	// echo $auth_token;
+// 	if ($auth_token != "") {
+// 		$isvalidate = $gh->validatejwt($auth_token,$user_id,$from);
+// 		if($isvalidate['status'] == 1){
+// 			$loggedin_user = getUsersDetails($user_id, false);
+// 		}
+// 		else {
+// 			$outputjson['message'] = "Token not Found";
+// 			$outputjson['status'] = -2;
+// 			$response_string = json_encode(($outputjson), JSON_PRETTY_PRINT);
+// 			echo $response_string;
+// 			return;
+// 		}
+// 	} else {
+// 		$outputjson['message'] = "Token not Found.";
+// 		$outputjson['status'] = -2;
+// 		$response_string = json_encode(($outputjson), JSON_PRETTY_PRINT);
+// 		echo $response_string;
+// 		return;
+// 	}
+// }
 
 if (isset($_POST) && count($_POST) > 0) {
 	foreach ($_POST as $post_key => &$post_value) {
