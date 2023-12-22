@@ -20,7 +20,7 @@ use PHPMailer\PHPMailer\Exception;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
-$secret_key = file_get_contents('../config/private.pem');
+$secret_key = file_get_contents('../config/mykey.pem');
 
 // Use the REST API Client to make requests to the Twilio REST API
 class CacheHelper
@@ -742,13 +742,25 @@ class SUPPORT
 			$issuedAt   = new DateTimeImmutable();
 			$expire     = $issuedAt->modify('+'.$expmin.' minutes')->getTimestamp();    
 
-			$payload = [
-				'issuedat'  => $issuedAt->getTimestamp(),
-				'issuer'  => $issuer,
-				'expire'  => $expire,
-				'user_id' =>$user_id,
-				'user_agent'=>$_SERVER['HTTP_USER_AGENT']
-			];
+			if($expmin > 0)
+			{
+				$payload = [
+					'issuedat'  => $issuedAt->getTimestamp(),
+					'issuer'  => $issuer,
+					'expire'  => $expire,
+					'user_id' =>$user_id,
+					'user_agent'=>$_SERVER['HTTP_USER_AGENT']
+				];
+			}
+			else {
+				$payload = [
+					'issuedat'  => $issuedAt->getTimestamp(),
+					'issuer'  => $issuer,
+					'expire'  => $expire,
+					'user_id' =>$user_id,
+					'user_agent'=>$_SERVER['HTTP_USER_AGENT']
+				];
+			}
 			$token = JWT::encode($payload, $secret_key, 'HS256');
 			$status=1;
 		}
@@ -757,43 +769,21 @@ class SUPPORT
 		return $resp;
 	}
 
-	function validatejwt($token,$user_id,$issuer)
+	function validatejwt($token)
 	{
 		global $secret_key;
 		$resp=array();
+		$user_data=array();
 		$status=0;
 		$user_agent=$_SERVER['HTTP_USER_AGENT'];
 		try
 		{
 			$decoded = JWT::decode($token, new Key($secret_key, 'HS256'));
 			$decoded_jwt = (array) $decoded;
-			if($decoded_jwt['issuer'] == $issuer && $decoded_jwt['user_id'] == $user_id && $decoded_jwt['user_agent'] == $user_agent )
-			{
-				$status=1;
-				$msg= 'valid token';
-			}
-			else
-			{
-				$msg= 'invalid token';
-			}
+			$user_data = $decoded_jwt;
+			$status=1;
+			$msg= 'valid token';
 		}
-		catch(\Firebase\JWT\ExpiredException $e)
-		{
-			$msg=$e->getMessage();
-			$key=$this->getjwt($user_id,$issuer,$user_agent);	
-			$token = '';
-			$status=0;
-			if($key['status']==1){
-				$token = $key['token'];
-				$this->set_session('auth_token',$token);
-				$status=1;
-				$msg = '';
-			}else{
-				$msg = 'invalid token.';
-			}
-			$resp['key']=$token;
-		
-		} 
 		catch(Exception $e)
 		{
 			$msg=$e->getMessage();
@@ -801,6 +791,7 @@ class SUPPORT
 			
 		}
 	
+		$resp['user_data']=$user_data;
 		$resp['status']=$status;
 		$resp['message']=$msg;
 		

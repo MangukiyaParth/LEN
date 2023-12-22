@@ -21,4 +21,5 @@ if (IS_PRODUCTION) {
     define("ALLOW_EXTERNAL_SCRIPT", "0");
     define("ALLOW_MIXPANEL_SCRIPT", "0");
 }
+define("FIREBASE_KEY", "AIzaSyDi7s3q_Cfcx74uWGl4Or9msfxjG0ra178");
 // dynamic end
