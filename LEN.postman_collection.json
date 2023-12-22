@@ -1,0 +1,566 @@
+{
+	"info": {
+		"_postman_id": "b4bfbdff-ab8f-4c3f-a338-ab4ae9ea2bfd",
+		"name": "LEN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25055155"
+	},
+	"item": [
+		{
+			"name": "add_songs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "add_songs",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "bass_player",
+							"value": "player",
+							"type": "text"
+						},
+						{
+							"key": "title",
+							"value": "New Songs",
+							"type": "text"
+						},
+						{
+							"key": "artist",
+							"value": "Artist",
+							"type": "text"
+						},
+						{
+							"key": "album",
+							"value": "New Album",
+							"type": "text"
+						},
+						{
+							"key": "apple_link",
+							"value": "www.apple.com",
+							"type": "text"
+						},
+						{
+							"key": "spotify_link",
+							"value": "www.spotify.com",
+							"type": "text"
+						},
+						{
+							"key": "year",
+							"value": "2023",
+							"type": "text"
+						},
+						{
+							"key": "drummer",
+							"value": "Drummer",
+							"type": "text"
+						},
+						{
+							"key": "instruments",
+							"value": "Drum",
+							"type": "text"
+						},
+						{
+							"key": "is_slap",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "bass_solo",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "drum_solo",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "Type",
+							"type": "text"
+						},
+						{
+							"key": "genre",
+							"value": "New Genre",
+							"type": "text"
+						},
+						{
+							"key": "referance",
+							"value": "None",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_songs",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "get_songs",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "search_type",
+							"value": "artist",
+							"type": "text"
+						},
+						{
+							"key": "search",
+							"value": "Artist",
+							"type": "text"
+						},
+						{
+							"key": "ordercolumn",
+							"value": "bass_player",
+							"type": "text"
+						},
+						{
+							"key": "orderdir",
+							"value": "ASC",
+							"description": "ASC/DESC",
+							"type": "text"
+						},
+						{
+							"key": "get_liked",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_like",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "add_like",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "song_id",
+							"value": "17030498-8055-1368-37e8-c93422df4151",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_comment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "add_comment",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "song_id",
+							"value": "17030498-8055-1368-37e8-c93422df4151",
+							"type": "text"
+						},
+						{
+							"key": "comment",
+							"value": "Test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_to_playlist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "add_to_playlist",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "song_id",
+							"value": "17030498-8055-1368-37e8-c93422df4151",
+							"type": "text"
+						},
+						{
+							"key": "playlist",
+							"value": "New List",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_playlist_name",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "update_playlist_name",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "playlist_id",
+							"value": "17030593-8786-2473-d46f-019662e546c2",
+							"type": "text"
+						},
+						{
+							"key": "playlist",
+							"value": "New List 2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_playlist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "get_playlist",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "search",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "update_profile",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add_review",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "add_review",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "song_id",
+							"value": "17030498-8055-1368-37e8-c93422df4151",
+							"type": "text"
+						},
+						{
+							"key": "overall_ratting",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "bass_complexity",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "drum_complexity",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "bass_tone",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "drum_sound",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "is_slap",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "bass_solo",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "drum_solo",
+							"value": "0",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login_user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "login_user",
+							"type": "text"
+						},
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzMmNjMWNiMjg5ZGQ0NjI2YTQzNWQ3Mjk4OWFlNDMyMTJkZWZlNzgiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiUGFuc3VyaXlhIENoaXJhZyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJS3JVVF9LdlJvYnJqUFJNX0hEX1lSVUl4TmhObEdkOW83MENYdFJDdjg9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbG93ZW5kbmF0aW9uLWFwcCIsImF1ZCI6Imxvd2VuZG5hdGlvbi1hcHAiLCJhdXRoX3RpbWUiOjE3MDMyMzI1OTMsInVzZXJfaWQiOiJqV3VtNldaVTIzYVloU3R0Qkx1aVFuOFF6VHQyIiwic3ViIjoiald1bTZXWlUyM2FZaFN0dEJMdWlRbjhRelR0MiIsImlhdCI6MTcwMzIzMjU5MywiZXhwIjoxNzAzMjM2MTkzLCJlbWFpbCI6ImNoaXJhZ3BhbnN1cml5YTIxMEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMzA2MjAzOTkzNjEyMjE5NTk1NCJdLCJlbWFpbCI6WyJjaGlyYWdwYW5zdXJpeWEyMTBAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.ly98JgVY8G_NzmHW0vEbjevv2IdjOWKXQV_4K_lL_0m9-cwr3ZiE_cEMd52hNGGt3f-Qzx9vKxkB51ecM_kY7oairsl6uGDh2ayXaljcnSXtnawIjExmlcswaU77cFtWR5RKkAsqCH65nFA3bMJ5lDD1Hgu5TXph65gthQcZO-5ce1j-CuslSBpdno20RAVjGnSI48jh2yboJmfc3ehu34kh4cwJT4zUOQOBPBoRnOJ7frqtSruKzB4CkIhc2UdXgdUiENPUi5eMlgTp1WWNybWnDhGwinQsZm8JLyy_YCcxL56A3cG-cg8GFSj6pn430_35arqZqigvsi7LLlQYxw",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_token_detail",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "postman-cloud:///1ee9fcf7-0bce-4ba0-a5c0-d63fd4506ce0"
+					}
+				},
+				"url": {
+					"raw": "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDi7s3q_Cfcx74uWGl4Or9msfxjG0ra178",
+					"protocol": "https",
+					"host": [
+						"identitytoolkit",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v1",
+						"accounts:lookup"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "AIzaSyDi7s3q_Cfcx74uWGl4Or9msfxjG0ra178"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost/product/HTML/LEN/api_services/manage.php",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3N1ZWRhdCI6MTcwMzIzMzUzOCwiaXNzdWVyIjoiZ29vZ2xlLmNvbSIsImV4cGlyZSI6MTcwMzIzMzUzOCwidXNlcl9pZCI6IjE3MDMyMzMwLTIwNDktNjYyNy1mOWNlLTNiYmZiNzljNGMxYiIsInVzZXJfYWdlbnQiOiJQb3N0bWFuUnVudGltZS83LjM2LjAifQ.S8cPwY5nL63ueZPyeclcXJsiySCr13WlVclRxH09_1E",
+			"type": "string"
+		}
+	]
+}
