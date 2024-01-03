@@ -5,7 +5,7 @@ function login_user()
 	global $outputjson, $gh, $db;
 	$outputjson['success'] = 0;
 	$token = $gh->read("token");
-	$$fcm_token = $gh->read("fcm_token");
+	$fcm_token = $gh->read("fcm_token");
 	if (empty($token)) {
 		$outputjson['message'] = "token is required.";
 		return;

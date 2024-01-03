@@ -56,6 +56,7 @@ $const = new ProjectConst();
 
 $operation = $gh->read("op", "");
 // $user_id = $login_user_id = $gh->read("user_id", 0);
+$user_id = "";
 $company_id = $gh->read("company_id", 0);
 $from = $gh->read("from", ""); // web/panel, ios, android, qbd
 $version = $gh->read("version", "0.0.0"); // 0.0.0
@@ -308,9 +309,9 @@ function getUsersDetails($id, $is_md5)
 function stripslashes_recursively($value)
 {
 	// echo $value."+++";
-	if ($value) {
-		$value = is_array($value) ?	array_map('stripslashes_recursively', $value) : (isJson($value) ? $value : stripslashes($value));
-	}
+	// if ($value) {
+	// 	$value = is_array($value) ?	array_map('stripslashes_recursively', $value) : (isJson($value) ? $value : stripslashes($value));
+	// }
 	return $value;
 }
 

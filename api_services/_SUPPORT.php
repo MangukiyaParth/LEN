@@ -756,7 +756,6 @@ class SUPPORT
 				$payload = [
 					'issuedat'  => $issuedAt->getTimestamp(),
 					'issuer'  => $issuer,
-					'expire'  => $expire,
 					'user_id' =>$user_id,
 					'user_agent'=>$_SERVER['HTTP_USER_AGENT']
 				];
@@ -784,6 +783,12 @@ class SUPPORT
 			$status=1;
 			$msg= 'valid token';
 		}
+		catch(Firebase\JWT\SignatureInvalidException $e)
+		{
+			$msg=$e->getMessage();
+			$status=0;
+			// $msg = 'invalid token';		
+		} 
 		catch(Exception $e)
 		{
 			$msg=$e->getMessage();
