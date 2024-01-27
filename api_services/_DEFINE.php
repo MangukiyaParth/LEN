@@ -39,7 +39,7 @@ define("UPLOAD", "upload/");
 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Content-Range, Content-Disposition");
-header('Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST, PUT');
+header('Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST, PUT, DELETE');
 
 /*
 DEBUG_MODE = 0  // Do not debug

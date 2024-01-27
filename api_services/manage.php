@@ -75,6 +75,10 @@ $last_query = "";
 $login_not_require_operation = array("register_user","login_user", "logout_user", "log_manage", "upload_csv");
 $loggedin_user = [];
 $md5_user_id = 0;
+
+$headers = apache_request_headers();
+$auth_tkn = $headers['Authorization'];
+
 if (!in_array($operation, $login_not_require_operation)) {
 	$auth_token = isset($auth_tkn) ? $auth_tkn : "";
 	// echo $auth_token;

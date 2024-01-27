@@ -79,7 +79,8 @@ function get_songs()
 	if ($ordercolumn != "") {
 		$orderby .= " ORDER BY " . $ordercolumn . " " . $orderdir;
 	}
-	$query = "SELECT DISTINCT s.* 
+	$query = "SELECT DISTINCT s.*,
+	(SELECT COUNT(id) FROM `tbl_like_song` l WHERE l.song_id = s.`id` AND l.entry_by = '$login_user_id') AS is_liked 
 		FROM tbl_songs as s
 		WHERE " . $whereData . " " . $orderby . " LIMIT " . $start . "," . $length . "";
 	$rows = $db->execute($query);

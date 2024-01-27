@@ -10,18 +10,19 @@
 			"name": "add_songs",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "op",
 							"value": "add_songs",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
 							"type": "text"
 						},
 						{
@@ -112,59 +113,56 @@
 		},
 		{
 			"name": "get_songs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
-				"header": [],
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}?op=get_songs&page=1&search_type=artist&search=Artist&ordercolumn=bass_player&orderdir=ASC&get_liked=",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
 						{
 							"key": "op",
-							"value": "get_songs",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
-							"type": "text"
+							"value": "get_songs"
 						},
 						{
 							"key": "page",
-							"value": "1",
-							"type": "text"
+							"value": "1"
 						},
 						{
 							"key": "search_type",
-							"value": "artist",
-							"type": "text"
+							"value": "artist"
 						},
 						{
 							"key": "search",
-							"value": "Artist",
-							"type": "text"
+							"value": "Artist"
 						},
 						{
 							"key": "ordercolumn",
-							"value": "bass_player",
-							"type": "text"
+							"value": "bass_player"
 						},
 						{
 							"key": "orderdir",
-							"value": "ASC",
-							"description": "ASC/DESC",
-							"type": "text"
+							"value": "ASC"
 						},
 						{
 							"key": "get_liked",
-							"value": "",
-							"type": "text"
+							"value": ""
 						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}",
-					"host": [
-						"{{base_url}}"
 					]
 				}
 			},
@@ -174,18 +172,19 @@
 			"name": "add_like",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "op",
 							"value": "add_like",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
 							"type": "text"
 						},
 						{
@@ -208,18 +207,19 @@
 			"name": "add_comment",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "op",
 							"value": "add_comment",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
 							"type": "text"
 						},
 						{
@@ -247,18 +247,19 @@
 			"name": "add_to_playlist",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "op",
 							"value": "add_to_playlist",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
 							"type": "text"
 						},
 						{
@@ -285,37 +286,32 @@
 		{
 			"name": "update_playlist_name",
 			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}?op=update_playlist_name&playlist_id=17030593-8786-2473-d46f-019662e546c2&playlist=New List 2",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
 						{
 							"key": "op",
-							"value": "update_playlist_name",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
-							"type": "text"
+							"value": "update_playlist_name"
 						},
 						{
 							"key": "playlist_id",
-							"value": "17030593-8786-2473-d46f-019662e546c2",
-							"type": "text"
+							"value": "17030593-8786-2473-d46f-019662e546c2"
 						},
 						{
 							"key": "playlist",
-							"value": "New List 2",
-							"type": "text"
+							"value": "New List 2"
 						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}",
-					"host": [
-						"{{base_url}}"
 					]
 				}
 			},
@@ -324,37 +320,32 @@
 		{
 			"name": "get_playlist",
 			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}?op=get_playlist&page=1&search=",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
 						{
 							"key": "op",
-							"value": "get_playlist",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
-							"type": "text"
+							"value": "get_playlist"
 						},
 						{
 							"key": "page",
-							"value": "1",
-							"type": "text"
+							"value": "1"
 						},
 						{
 							"key": "search",
-							"value": "",
-							"type": "text"
+							"value": ""
 						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}",
-					"host": [
-						"{{base_url}}"
 					]
 				}
 			},
@@ -363,32 +354,32 @@
 		{
 			"name": "update_profile",
 			"request": {
-				"method": "POST",
-				"header": [],
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
-					"formdata": [
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{base_url}}?op=update_profile&name=Admin",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
 						{
 							"key": "op",
-							"value": "update_profile",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
-							"type": "text"
+							"value": "update_profile"
 						},
 						{
 							"key": "name",
-							"value": "Admin",
-							"type": "text"
+							"value": "Admin"
 						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}",
-					"host": [
-						"{{base_url}}"
 					]
 				}
 			},
@@ -398,18 +389,19 @@
 			"name": "add_review",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "op",
 							"value": "add_review",
-							"type": "text"
-						},
-						{
-							"key": "auth_token",
-							"value": "{{token}}",
 							"type": "text"
 						},
 						{
@@ -472,7 +464,13 @@
 			"name": "login_user",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
@@ -483,8 +481,69 @@
 						},
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzMmNjMWNiMjg5ZGQ0NjI2YTQzNWQ3Mjk4OWFlNDMyMTJkZWZlNzgiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiUGFuc3VyaXlhIENoaXJhZyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJS3JVVF9LdlJvYnJqUFJNX0hEX1lSVUl4TmhObEdkOW83MENYdFJDdjg9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbG93ZW5kbmF0aW9uLWFwcCIsImF1ZCI6Imxvd2VuZG5hdGlvbi1hcHAiLCJhdXRoX3RpbWUiOjE3MDMyMzI1OTMsInVzZXJfaWQiOiJqV3VtNldaVTIzYVloU3R0Qkx1aVFuOFF6VHQyIiwic3ViIjoiald1bTZXWlUyM2FZaFN0dEJMdWlRbjhRelR0MiIsImlhdCI6MTcwMzIzMjU5MywiZXhwIjoxNzAzMjM2MTkzLCJlbWFpbCI6ImNoaXJhZ3BhbnN1cml5YTIxMEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMzA2MjAzOTkzNjEyMjE5NTk1NCJdLCJlbWFpbCI6WyJjaGlyYWdwYW5zdXJpeWEyMTBAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.ly98JgVY8G_NzmHW0vEbjevv2IdjOWKXQV_4K_lL_0m9-cwr3ZiE_cEMd52hNGGt3f-Qzx9vKxkB51ecM_kY7oairsl6uGDh2ayXaljcnSXtnawIjExmlcswaU77cFtWR5RKkAsqCH65nFA3bMJ5lDD1Hgu5TXph65gthQcZO-5ce1j-CuslSBpdno20RAVjGnSI48jh2yboJmfc3ehu34kh4cwJT4zUOQOBPBoRnOJ7frqtSruKzB4CkIhc2UdXgdUiENPUi5eMlgTp1WWNybWnDhGwinQsZm8JLyy_YCcxL56A3cG-cg8GFSj6pn430_35arqZqigvsi7LLlQYxw",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjUyNmM2YTg0YWMwNjcwMDVjZTM0Y2VmZjliM2EyZTA4ZTBkZDliY2MiLCJ0eXAiOiJKV1QifQ.eyJuYW1lIjoiUGFuc3VyaXlhIENoaXJhZyIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NJS3JVVF9LdlJvYnJqUFJNX0hEX1lSVUl4TmhObEdkOW83MENYdFJDdjg9czk2LWMiLCJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbG93ZW5kbmF0aW9uLWFwcCIsImF1ZCI6Imxvd2VuZG5hdGlvbi1hcHAiLCJhdXRoX3RpbWUiOjE3MDQzNzUzMDMsInVzZXJfaWQiOiJqV3VtNldaVTIzYVloU3R0Qkx1aVFuOFF6VHQyIiwic3ViIjoiald1bTZXWlUyM2FZaFN0dEJMdWlRbjhRelR0MiIsImlhdCI6MTcwNDM3NTMwMywiZXhwIjoxNzA0Mzc4OTAzLCJlbWFpbCI6ImNoaXJhZ3BhbnN1cml5YTIxMEBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJnb29nbGUuY29tIjpbIjExMzA2MjAzOTkzNjEyMjE5NTk1NCJdLCJlbWFpbCI6WyJjaGlyYWdwYW5zdXJpeWEyMTBAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoiZ29vZ2xlLmNvbSJ9fQ.GxjbRVvkQNQerELlLLbRsGnvGDM7a6ixOsOz0Af02iSZ1we2znHYJdXskVLvtVeXIkStqkOouLb47pEpRc-4RwGfYRDO_QoJq9E01XCJd1xqxLGuLNeQR3BFbjLB2n496uXtCEWsicvsBZMMqQQ_TwxuYK3eyarR3PdOiHmJU9GBBlrBzt0llOrj3Hx4j7yTeNl4gDIWt3YsxWITOzAG2E7YP1NUOCpjsWVk3V-bS904HrUEtTqzJCzCe6EYo4HEbMWEDPDH2MwpfbQLYvS3eFbvTZk4SGF4Yqn505Yt_qXfsn4oSqGN8zBEyuJvu45dUD1uwaBsCkx0CNfCdN8dLQ",
 							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_user",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}?op=delete_user",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "delete_user"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload_csv",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "upload_csv",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/hp/Desktop/LEN Bass Player Database_Initial CSV File_231205.csv"
 						}
 					]
 				},
