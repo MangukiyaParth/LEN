@@ -588,6 +588,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "get_profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}?op=get_profile",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "get_profile"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
