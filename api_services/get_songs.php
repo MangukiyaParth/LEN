@@ -14,12 +14,111 @@ function get_songs()
 	$orderdir = $gh->read("orderdir");
 	$ordercolumn = $gh->read('ordercolumn');
 	$get_liked = $gh->read('get_liked',0);
+	$list_type = $gh->read('list_type',0); 
+	// 1 - most liked
+	// 2 - top rated
+	// 3 - Easy basslines
+	// 4 - Intermediate basslines
+	// 5 - Advanced baselines
+	// 6 - best Basstone
+	// 7 - No so Good Basstone
+	// 8 - Slap Bass
+	// 9 - Bass solo
+	// 10 - Easy Drum
+	// 11 - Intermediate Drum
+	// 12 - Advanced Drum
+	// 13 - best Drum
+	// 14 - No so Good Drum
+	// 15 - Drum Solo
 
-	$whereData = $basic_where = "1=1";
+	$whereData = "1=1";
 	if($get_liked == 1)
 	{
-		$whereData = $basic_where = "id IN (SELECT song_id FROM tbl_like_song WHERE entry_by = '$login_user_id')";
+		$whereData = "id IN (SELECT song_id FROM tbl_like_song WHERE entry_by = '$login_user_id')";
 	}
+
+	$orderby = "";
+	if ($ordercolumn != "") {
+		$orderby .= " ORDER BY " . $ordercolumn . " " . $orderdir;
+	}
+	switch ($list_type) {
+		case 1:
+			// most liked
+			$orderby = " ORDER BY IFNULL(s.like_cnt,0) DESC";
+			break;
+		case 2:
+			// Top Rated
+			$orderby = " ORDER BY IFNULL(s.avg_ratting,0) DESC";
+			break;
+		case 3:
+			// Easy basslines
+			$whereData = " s.bass_complexity IN (1,2) ";
+			$orderby = " ORDER BY IFNULL(s.bass_complexity,0) ASC";
+			break;
+		case 4:
+			// Intermediate basslines
+			$whereData = " s.bass_complexity IN (3,4) ";
+			$orderby = " ORDER BY IFNULL(s.bass_complexity,0) ASC";
+			break;
+		case 5:
+			// Advanced basslines
+			$whereData = " s.bass_complexity = 5 ";
+			$orderby = " ORDER BY IFNULL(s.bass_complexity,0) ASC";
+			break;
+		case 6:
+			//best Basstone
+			$whereData = " s.bass_tone IN (3,4,5) ";
+			$orderby = " ORDER BY IFNULL(s.bass_tone,0) DESC";
+			break;
+		case 7:
+			//No so Good Basstone
+			$whereData = " s.bass_tone IN (1,2,3) ";
+			$orderby = " ORDER BY IFNULL(s.bass_tone,0) ASC";
+			break;
+		case 8:
+			//Slap Bass
+			$whereData = " IFNULL(s.is_slap,0) = 1 ";
+			break;
+		case 9:
+			//Bass solo
+			$whereData = " IFNULL(s.bass_solo,0) = 1 ";
+			break;
+		case 10:
+			//Easy Drum
+			$whereData = " s.drum_complexity IN (1,2) ";
+			$orderby = " ORDER BY IFNULL(s.drum_complexity,0) ASC";
+			break;
+		case 11:
+			//Intermediate Drum
+			$whereData = " s.drum_complexity IN (3,4) ";
+			$orderby = " ORDER BY IFNULL(s.drum_complexity,0) ASC";
+			break;
+		case 12:
+			//Advanced Drum
+			$whereData = " s.drum_complexity = 5 ";
+			$orderby = " ORDER BY IFNULL(s.drum_complexity,0) ASC";
+			break;
+		case 13:
+			//best Drum
+			$whereData = " s.drum_sound IN (3,4,5) ";
+			$orderby = " ORDER BY IFNULL(s.drum_sound,0) DESC";
+			break;
+		case 14:
+			//No so Good Drum
+			$whereData = " s.drum_sound IN (1,2,3) ";
+			$orderby = " ORDER BY IFNULL(s.drum_sound,0) ASC";
+			break;
+		case 15:
+			//Drum solo
+			$whereData = " IFNULL(s.drum_solo,0) = 1 ";
+			break;
+		default:
+			# code...
+			break;
+	}
+
+	$basic_where = $whereData;
+
 	if($search != "")
 	{
 		$whereData.= " AND (s.bass_player LIKE '%" . $search . "%' OR 
@@ -75,10 +174,6 @@ function get_songs()
 	$count_query = "SELECT count(DISTINCT s.id) as cnt FROM tbl_songs as s WHERE " . $whereData;
 	$filtered_count = $db->execute_scalar($count_query);
 
-	$orderby = "";
-	if ($ordercolumn != "") {
-		$orderby .= " ORDER BY " . $ordercolumn . " " . $orderdir;
-	}
 	$query = "SELECT DISTINCT s.*,
 	(SELECT COUNT(id) FROM `tbl_like_song` l WHERE l.song_id = s.`id` AND l.entry_by = '$login_user_id') AS is_liked 
 		FROM tbl_songs as s
