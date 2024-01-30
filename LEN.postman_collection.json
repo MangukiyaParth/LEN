@@ -130,7 +130,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "{{base_url}}?op=get_songs&page=1&search_type=artist&search=Artist&ordercolumn=bass_player&orderdir=ASC&get_liked=",
+					"raw": "{{base_url}}?op=get_songs&page=1&search_type=artist&search=Artist&ordercolumn=bass_player&orderdir=ASC&get_liked=&list_type",
 					"host": [
 						"{{base_url}}"
 					],
@@ -162,6 +162,11 @@
 						{
 							"key": "get_liked",
 							"value": ""
+						},
+						{
+							"key": "list_type",
+							"value": null,
+							"description": "1 - most liked\n2 - top rated\n3 - Easy basslines\n4 - Intermediate basslines\n5 - Advanced baselines\n6 - best Basstone\n7 - No so Good Basstone\n8 - Slap Bass\n9 - Bass solo\n10 - Easy Drum\n11 - Intermediate Drum\n12 - Advanced Drum\n13 - best Drum\n14 - No so Good Drum\n15 - Drum Solo"
 						}
 					]
 				}

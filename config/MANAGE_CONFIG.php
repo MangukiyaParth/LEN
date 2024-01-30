@@ -6,7 +6,7 @@ define("db_user", "root");
 define("db_pass", "");
 define("db_name", "db_len");
 
-define("IS_DEVELOPMENT", true);
+define("IS_DEVELOPMENT", false);
 define("IS_PRODUCTION", (!IS_DEVELOPMENT));
 if (IS_PRODUCTION) {
     define("API_URL", "http://" . $_SERVER['HTTP_HOST'] . "/api_services/");
