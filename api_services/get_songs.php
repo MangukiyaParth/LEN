@@ -52,27 +52,27 @@ function get_songs()
 			break;
 		case 3:
 			// Easy basslines
-			$whereData = " s.bass_complexity IN (1,2) ";
+			$whereData = " bass_complexity IN (1,2) ";
 			$orderby = " ORDER BY IFNULL(s.bass_complexity,0) ASC";
 			break;
 		case 4:
 			// Intermediate basslines
-			$whereData = " s.bass_complexity IN (3,4) ";
+			$whereData = " bass_complexity IN (3,4) ";
 			$orderby = " ORDER BY IFNULL(s.bass_complexity,0) ASC";
 			break;
 		case 5:
 			// Advanced basslines
-			$whereData = " s.bass_complexity = 5 ";
+			$whereData = " bass_complexity = 5 ";
 			$orderby = " ORDER BY IFNULL(s.bass_complexity,0) ASC";
 			break;
 		case 6:
 			//best Basstone
-			$whereData = " s.bass_tone IN (3,4,5) ";
+			$whereData = " bass_tone IN (3,4,5) ";
 			$orderby = " ORDER BY IFNULL(s.bass_tone,0) DESC";
 			break;
 		case 7:
 			//No so Good Basstone
-			$whereData = " s.bass_tone IN (1,2,3) ";
+			$whereData = " bass_tone IN (1,2,3) ";
 			$orderby = " ORDER BY IFNULL(s.bass_tone,0) ASC";
 			break;
 		case 8:
@@ -85,32 +85,32 @@ function get_songs()
 			break;
 		case 10:
 			//Easy Drum
-			$whereData = " s.drum_complexity IN (1,2) ";
+			$whereData = " drum_complexity IN (1,2) ";
 			$orderby = " ORDER BY IFNULL(s.drum_complexity,0) ASC";
 			break;
 		case 11:
 			//Intermediate Drum
-			$whereData = " s.drum_complexity IN (3,4) ";
+			$whereData = " drum_complexity IN (3,4) ";
 			$orderby = " ORDER BY IFNULL(s.drum_complexity,0) ASC";
 			break;
 		case 12:
 			//Advanced Drum
-			$whereData = " s.drum_complexity = 5 ";
+			$whereData = " drum_complexity = 5 ";
 			$orderby = " ORDER BY IFNULL(s.drum_complexity,0) ASC";
 			break;
 		case 13:
 			//best Drum
-			$whereData = " s.drum_sound IN (3,4,5) ";
+			$whereData = " drum_sound IN (3,4,5) ";
 			$orderby = " ORDER BY IFNULL(s.drum_sound,0) DESC";
 			break;
 		case 14:
 			//No so Good Drum
-			$whereData = " s.drum_sound IN (1,2,3) ";
+			$whereData = " drum_sound IN (1,2,3) ";
 			$orderby = " ORDER BY IFNULL(s.drum_sound,0) ASC";
 			break;
 		case 15:
 			//Drum solo
-			$whereData = " IFNULL(s.drum_solo,0) = 1 ";
+			$whereData = " IFNULL(drum_solo,0) = 1 ";
 			break;
 		default:
 			# code...

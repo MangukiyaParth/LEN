@@ -249,6 +249,41 @@
 			"response": []
 		},
 		{
+			"name": "add_playlist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "op",
+							"value": "add_playlist",
+							"type": "text"
+						},
+						{
+							"key": "playlist",
+							"value": "FP",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "add_to_playlist",
 			"request": {
 				"method": "POST",
@@ -273,8 +308,8 @@
 							"type": "text"
 						},
 						{
-							"key": "playlist",
-							"value": "New List",
+							"key": "playlist_id",
+							"value": "17030498-8055-1368-37e8-5sdf56sdf55s",
 							"type": "text"
 						}
 					]
@@ -316,6 +351,40 @@
 						{
 							"key": "playlist",
 							"value": "New List 2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_playlist",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}?op=delete_playlist&song_id&playlist_id",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "delete_playlist"
+						},
+						{
+							"key": "song_id",
+							"value": null
+						},
+						{
+							"key": "playlist_id",
+							"value": null
 						}
 					]
 				}
