@@ -32,7 +32,7 @@
 						},
 						{
 							"key": "title",
-							"value": "New Songs",
+							"value": "Test Songs new",
 							"type": "text"
 						},
 						{
@@ -98,6 +98,11 @@
 						{
 							"key": "referance",
 							"value": "None",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "",
 							"type": "text"
 						}
 					]
@@ -683,6 +688,36 @@
 						{
 							"key": "op",
 							"value": "get_profile"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_song",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}?op=delete_song&song_id=17073006-8872-2046-3e07-e7782321450e",
+					"host": [
+						"{{base_url}}"
+					],
+					"query": [
+						{
+							"key": "op",
+							"value": "delete_song"
+						},
+						{
+							"key": "song_id",
+							"value": "17073006-8872-2046-3e07-e7782321450e"
 						}
 					]
 				}

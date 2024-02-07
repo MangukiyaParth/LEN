@@ -11,7 +11,7 @@ function get_playlist()
 	$start = ($page - 1) * $length;
 	$search = $gh->read("search","");
 
-	$whereData = $basic_where = "1=1";
+	$whereData = $basic_where = "entry_by='$login_user_id'";
 	if($search != "")
 	{
 		$whereData.= " AND (p.bass_player LIKE '%" . $search . "%')";
