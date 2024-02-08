@@ -28,7 +28,7 @@ function get_playlist()
 			$playlist_id = $playlist['id'];
 			$query_song = "SELECT s.*,
 				(SELECT COUNT(l.id) FROM `tbl_like_song` l WHERE l.song_id = s.`id` AND l.entry_by = '$login_user_id') AS is_liked,
-				(SELECT GROUP_CONCAT(pl.playlist_id) FROM `tbl_playlist_details` pl WHERE pl.song_id = s.`id` AND pl.entry_by = '1') AS playlist_ids  
+				(SELECT GROUP_CONCAT(pl.playlist_id) FROM `tbl_playlist_details` pl WHERE pl.song_id = s.`id` AND pl.entry_by = '$login_user_id') AS playlist_ids  
 				FROM `tbl_playlist_details` pd 
 				INNER JOIN tbl_songs s ON s.id = pd.song_id 
 				WHERE pd.playlist_id = '$playlist_id'";
