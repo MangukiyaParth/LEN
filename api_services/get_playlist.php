@@ -24,12 +24,29 @@ function get_playlist()
 	$rows = $db->execute($query);
 
 	if ($rows != null && is_array($rows) && count($rows) > 0) {
-		foreach ($rows as $key => $song) {
-			$playlist_id = $song['id'];
-			$query_song = "SELECT s.*
-				FROM `tbl_playlist_details` pd INNER JOIN tbl_songs s ON s.id = pd.song_id 
+		foreach ($rows as $key => $playlist) {
+			$playlist_id = $playlist['id'];
+			$query_song = "SELECT s.*,
+				(SELECT COUNT(l.id) FROM `tbl_like_song` l WHERE l.song_id = s.`id` AND l.entry_by = '$login_user_id') AS is_liked,
+				(SELECT GROUP_CONCAT(pl.playlist_id) FROM `tbl_playlist_details` pl WHERE pl.song_id = s.`id` AND pl.entry_by = '1') AS playlist_ids  
+				FROM `tbl_playlist_details` pd 
+				INNER JOIN tbl_songs s ON s.id = pd.song_id 
 				WHERE pd.playlist_id = '$playlist_id'";
 			$rows_song = $db->execute($query_song);
+
+			foreach ($rows_song as $song_key => $song) {
+				$song_id = $song['id'];
+				$query_comment = "SELECT comment.comment, comment.entry_by, comment.entry_at, user.name,
+					CASE WHEN (comment.entry_by = '$login_user_id') THEN 1 ELSE 0 END AS my_comment
+					FROM `tbl_comment_song` comment INNER JOIN tbl_users user ON user.id = comment.entry_by 
+					WHERE comment.song_id = '$song_id'";
+				$rows_comment = $db->execute($query_comment);
+				$rows_song[$song_key]['comments'] = $rows_comment;
+				
+				$query_tbl_review = "SELECT * FROM `tbl_review` r WHERE r.song_id = '$song_id' AND entry_by = '$login_user_id'";
+				$rows_tbl_review = $db->execute($query_tbl_review);
+				$rows_song[$song_key]['my_review'] = $rows_tbl_review;
+			}
 			$rows[$key]['songs'] = $rows_song;
 		}
 		$outputjson['recordsTotal'] = $total_count;
