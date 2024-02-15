@@ -9,7 +9,8 @@ function get_songs()
 	$page = $gh->read("page");
 	$length = 20;
 	$start = ($page - 1) * $length;
-	$search_type = $gh->read("search_type","");
+	// $search_type_arr = $gh->read("search_type","");
+	$search_type_arr = $_REQUEST["search_type"];
 	$search = $gh->read("search","");
 	$orderdir = $gh->read("orderdir");
 	$ordercolumn = $gh->read('ordercolumn');
@@ -118,56 +119,29 @@ function get_songs()
 	}
 
 	$basic_where = $whereData;
-
-	if($search != "")
+	if($search_type_arr != "")
 	{
-		$whereData.= " AND (s.bass_player LIKE '%" . $search . "%' OR 
-			s.title LIKE '%" . $search . "%' OR 
-			s.artist LIKE '%" . $search . "%' OR 
-			s.album LIKE '%" . $search . "%' OR 
-			s.year LIKE '%" . $search . "%' OR 
-			s.drummer LIKE '%" . $search . "%' OR 
-			s.instruments LIKE '%" . $search . "%' OR 
-			s.type LIKE '%" . $search . "%' OR 
-			s.genre LIKE '%" . $search . "%' OR 
-			s.referance LIKE '%" . $search . "%')";
-		if($search_type != "")
-		{
-			$whereData.= " AND (s.$search_type LIKE '%" . $search . "%')";
+		$search_type_arr = json_decode($search_type_arr, true);
+		$whereData.= " AND ( 1=1 ";
+		foreach($search_type_arr as $search_key => $search){
+			$whereData.= " AND LOWER(s.".$search_key.") LIKE '%" . strtolower($search) . "%'";
+			addToSearchHistory($search_key, $search);
 		}
-
-		$history_id = $gh->generateuniqid();
-		$insert_arr = array(
-			"id"=>$history_id,
-			"search_type"=>$search_type,
-			"search"=>$search,
-			"entry_by" => $login_user_id,
-			"entry_at" => date('Y-m-d H:i:s')
-		);
-		$db->insert("tbl_search_history", $insert_arr);
-		
-		$qry_get_id = "SELECT * FROM tbl_search_keyword WHERE search_type = '$search_type' AND search = '$search'";
-		$rows_get_id = $db->execute($qry_get_id);
-		if ($rows_get_id != null && is_array($rows_get_id) && count($rows_get_id) > 0) {
-			$keyword_id = $rows_get_id[0]['id'];
-			$cnt = $rows_get_id[0]['cnt'];
-			$update_arr = array(
-				"cnt"=>$cnt+1,
-			);
-			$db->update("tbl_search_keyword", $update_arr, array("id"=>$keyword_id));
-		}
-		else{
-			$keyword_id = $gh->generateuniqid();
-			$insert_arr = array(
-				"id"=>$keyword_id,
-				"search_type"=>$search_type,
-				"search"=>$search,
-				"cnt"=>1,
-				"entry_by" => $login_user_id,
-				"entry_at" => date('Y-m-d H:i:s')
-			);
-			$db->insert("tbl_search_keyword", $insert_arr);
-		}
+		$whereData.= ")";
+	}
+	else if($search != ""){
+		addToSearchHistory("", $search);
+		$whereData.= " AND (
+			LOWER(s.bass_player) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.title) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.artist) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.album) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.year) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.drummer) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.instruments) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.type) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.genre) LIKE '%" . strtolower($search) . "%' OR 
+			LOWER(s.referance) LIKE '%" . strtolower($search) . "%')";
 	}
 
 	$total_count = $db->get_row_count('tbl_songs', $basic_where);

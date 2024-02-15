@@ -135,7 +135,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "{{base_url}}?op=get_songs&page=1&search_type=artist&search=Artist&ordercolumn=bass_player&orderdir=ASC&get_liked=&list_type",
+					"raw": "{{base_url}}?op=get_songs&page=1&search_type={\"artist\":\"Cameo\",\"title\":\"The Sound Table\"}&ordercolumn=bass_player&orderdir=ASC&get_liked=&list_type",
 					"host": [
 						"{{base_url}}"
 					],
@@ -150,11 +150,12 @@
 						},
 						{
 							"key": "search_type",
-							"value": "artist"
+							"value": "{\"artist\":\"Cameo\",\"title\":\"The Sound Table\"}"
 						},
 						{
 							"key": "search",
-							"value": "Artist"
+							"value": "Artist",
+							"disabled": true
 						},
 						{
 							"key": "ordercolumn",

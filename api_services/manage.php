@@ -430,6 +430,42 @@ function FriendlyErrorType($type)
 	return "";
 }
 
+function addToSearchHistory($search_type, $search){
+	global $gh, $db, $login_user_id;
+	$history_id = $gh->generateuniqid();
+	$insert_arr = array(
+		"id"=>$history_id,
+		"search_type"=>$search_type,
+		"search"=>$search,
+		"entry_by" => $login_user_id,
+		"entry_at" => date('Y-m-d H:i:s')
+	);
+	$db->insert("tbl_search_history", $insert_arr);
+	
+	$qry_get_id = "SELECT * FROM tbl_search_keyword WHERE search_type = '$search_type' AND search = '$search'";
+	$rows_get_id = $db->execute($qry_get_id);
+	if ($rows_get_id != null && is_array($rows_get_id) && count($rows_get_id) > 0) {
+		$keyword_id = $rows_get_id[0]['id'];
+		$cnt = $rows_get_id[0]['cnt'];
+		$update_arr = array(
+			"cnt"=>$cnt+1,
+		);
+		$db->update("tbl_search_keyword", $update_arr, array("id"=>$keyword_id));
+	}
+	else{
+		$keyword_id = $gh->generateuniqid();
+		$insert_arr = array(
+			"id"=>$keyword_id,
+			"search_type"=>$search_type,
+			"search"=>$search,
+			"cnt"=>1,
+			"entry_by" => $login_user_id,
+			"entry_at" => date('Y-m-d H:i:s')
+		);
+		$db->insert("tbl_search_keyword", $insert_arr);
+	}
+}
+
 interface MyPackageThrowable extends Throwable
 {
 }
