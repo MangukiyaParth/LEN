@@ -40,7 +40,7 @@ function login_user()
 	if($firebase_status == 1 && !empty($firebase_data['users']))
 	{
 		$email = $firebase_data['users'][0]['email'];
-		$query_user = "SELECT usr.* FROM tbl_users as usr WHERE usr.username ='$email'";
+		$query_user = "SELECT usr.* FROM tbl_users as usr WHERE usr.email ='$email'";
 		$rows = $db->execute($query_user);
 		$user = [];
 		if ($rows != null && is_array($rows) && count($rows) > 0) {
@@ -69,7 +69,7 @@ function login_user()
 				"fname" => $fname,
 				"lname" => $lname,
 				"email" => $email,
-				"username" => $email,
+				// "username" => $email,
 				"email_verified" => $emailVerified,
 				"local_id" => $localId,
 				"provider" => $provider,

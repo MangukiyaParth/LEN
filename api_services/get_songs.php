@@ -159,6 +159,7 @@ function get_songs()
 		foreach ($rows as $key => $song) {
 			$song_id = $song['id'];
 			$query_comment = "SELECT comment.comment, comment.entry_by, comment.entry_at, user.name,
+				CASE WHEN (user.username != '') THEN user.username ELSE user.name END AS comment_by,
 				CASE WHEN (comment.entry_by = '$login_user_id') THEN 1 ELSE 0 END AS my_comment
 				FROM `tbl_comment_song` comment INNER JOIN tbl_users user ON user.id = comment.entry_by 
 				WHERE comment.song_id = '$song_id'";

@@ -447,7 +447,7 @@
 					"formdata": []
 				},
 				"url": {
-					"raw": "{{base_url}}?op=update_profile&name=Admin",
+					"raw": "{{base_url}}?op=update_profile&name=Admin&username=admin",
 					"host": [
 						"{{base_url}}"
 					],
@@ -459,6 +459,10 @@
 						{
 							"key": "name",
 							"value": "Admin"
+						},
+						{
+							"key": "username",
+							"value": "admin"
 						}
 					]
 				}
