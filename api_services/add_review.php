@@ -58,9 +58,9 @@ function add_review()
 			(SUM(drum_complexity)/COUNT(id)) AS drum_complexity, 
 			(SUM(bass_tone)/COUNT(id)) AS bass_tone, 
 			(SUM(drum_sound)/COUNT(id)) AS drum_sound,
-			(SUM(is_slap)/COUNT(id)) AS is_slap,
-			(SUM(bass_solo)/COUNT(id)) AS bass_solo,
-			(SUM(drum_solo)/COUNT(id)) AS drum_solo
+			CASE WHEN SUM(is_slap) > (COUNT(id) - SUM(is_slap)) THEN 1 ELSE 0 END AS is_slap,
+			CASE WHEN SUM(bass_solo) > (COUNT(id) - SUM(bass_solo)) THEN 1 ELSE 0 END AS bass_solo,
+			CASE WHEN SUM(drum_solo) > (COUNT(id) - SUM(drum_solo)) THEN 1 ELSE 0 END AS drum_solo
 			FROM tbl_review r WHERE r.`song_id` = '$song_id'";
 		$rows_avg = $db->execute($qry_avg);
 		$avg = $rows_avg[0];
